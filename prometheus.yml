@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "delivery_service"
+    static_configs:
+      # When using docker-compose, Prometheus and delivery_metrics are on the same network
+      # so we can scrape by container/service name.
+      - targets: ["delivery_metrics:8000"]
+
+rule_files:
+  - /etc/prometheus/alert_rules.yml
