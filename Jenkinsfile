@@ -12,9 +12,9 @@ pipeline {
         script {
           // Ensure this Jenkins node has docker and docker-compose installed and the Jenkins user has permission.
           if (fileExists('docker-compose.yml')) {
-            sh 'docker-compose -f docker-compose.yml up -d --build'
+            sh 'docker compose -f docker-compose.yml up -d --build'
           } else {
-            error 'docker-compose.yml not found. Place it in the repo root.'
+            error 'docker compose.yml not found. Place it in the repo root.'
           }
         }
       }
